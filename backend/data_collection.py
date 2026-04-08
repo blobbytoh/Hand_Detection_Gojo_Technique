@@ -5,7 +5,7 @@ from mediapipe.tasks.python import vision
 import time
 import csv
 import math
-from main import distance, open_palm, extract_normalized_features
+from backend.main import distance, open_palm, extract_normalized_features
 
 # Configuration
 current_label = None
