@@ -40,7 +40,7 @@ async function createLandmarker(){
     })
 }
 
-const ws = new WebSocket(`ws://${window.location.host}/ws`)
+const ws = new WebSocket(`wss://${window.location.host}/ws`)
 ws.onopen = () => {
     console.log('web socket connected')
 }
