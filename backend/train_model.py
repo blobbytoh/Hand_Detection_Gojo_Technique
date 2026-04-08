@@ -63,7 +63,7 @@ print("=" * 50)
 print("TRAINING SINGLE-HAND MODEL")
 print("=" * 50)
 
-single_data = pd.read_csv('gesture_data_single.csv')
+single_data = pd.read_csv('backend/gesture_data_single.csv')
 
 # Drop metadata columns, keep features + label
 X_single = single_data.drop(['seq_id', 'frame_idx', 'label'], axis=1)
@@ -115,7 +115,7 @@ print("=" * 50)
 
 from sklearn.svm import OneClassSVM
 
-dual_data = pd.read_csv('gesture_data_dual.csv')
+dual_data = pd.read_csv('backend/gesture_data_dual.csv')
 
 X_dual = dual_data.drop(['seq_id', 'frame_idx', 'label'], axis=1)
 
