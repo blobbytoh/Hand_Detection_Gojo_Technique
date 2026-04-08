@@ -1,4 +1,4 @@
-# Hand Detection Project inspired from Anime : Jujutsu Kaisen [ Gojo Saturo ]
+# Hand Detection Project inspired from Anime : Jujutsu Kaisen [ Gojo Satoru ]
 
 To download all of the required resources, use :
 ```pip install -r requirements.txt```
