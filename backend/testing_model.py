@@ -3,7 +3,7 @@ import numpy as np
 import string
 import pandas as pd
 import warnings
-from main import open_palm, distance, extract_normalized_features
+from backend.main import open_palm, distance, extract_normalized_features
 
 import uvicorn
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
