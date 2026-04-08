@@ -1,0 +1,110 @@
+body, html{
+    background-color: #252627 ;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+#webcam{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+#overlay{
+    position: absolute;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+#particles{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    height: auto;
+    background: transparent;
+}
+
+#gesture-display{
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    z-index: 1000;
+    border: 2px solid #FFEEE2;
+    text-shadow: 0 0 10px currentColor;
+}
+
+#instructions{
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    z-index: 1000;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    border: 1px white solid;
+    padding: 6px 10px;
+    text-shadow: 0 0 10px white;
+    transition: 0.1s ease-in-out all;
+}
+
+#instructions:hover{
+    background-color: white;
+    text-shadow: 0 0 10px #333;
+    color: black;
+    border: 1px #333 solid;
+}
+
+.carousel .carousel-inner{
+    background-color: #121212;
+    height: min-content;
+    color: white;
+    padding: 20px 65px;
+}
+
+.carousel .carousel-inner .carousel-item .carousel-content p{
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+
+.carousel .carousel-inner .carousel-item .carousel-content img{
+    height: 6em;
+}
+
+.carousel .carousel-inner .carousel-item .carousel-content .gesture-picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot{
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: rgb(209, 206, 206);
+}

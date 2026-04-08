@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gojo Saturo Hand Tracking Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body style="background-color: #252627;">
+    <div class="container p-0 m-auto">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="overlay"></canvas>
+    </div>
+    <canvas id="particles"></canvas>
+
+    <div id="gesture-display">
+        Waiting for gesture...
+    </div>
+
+    <button id="instructions" type="button" data-bs-toggle="modal" data-bs-target="#instructionModal">Instructions</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-content">
+                                    <h6 class="text-center mb-3">Cursed Technique Lapse :  Blue</h6>
+                                    <div class="gesture-picture mb-3">
+                                        <img src="static/pictures/index_finger.png" alt="">
+                                    </div>
+                                    <p>Hand Gesture: <br>Showing only 1 hand to the web cam. Point your index finger up with the rest of the other fingers clamping together</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <h6 class="text-center mb-3">Cursed Technique Reversal :  Red</h6>
+                                    <div class="gesture-picture mb-3">
+                                        <img src="static/pictures/technique_red_index_middle.png" alt="">
+                                    </div>
+                                    <p>Hand Gesture: <br>Show only 1 hand to the web cam. Showing both the index and the middle finger straight up to the top. Make sure the other fingers are clamped together to form a fist</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <h6 class="text-center mb-3">Hollow Technique: Purple (Merge - Red | Blue)</h6>
+                                    <div class="gesture-picture mb-3">
+                                        <img src="static/pictures/hollow_purple_merge.png" alt="">
+                                    </div>
+                                    <p>Hand Gesture: <br>Show 2 hands to the web cam. Using the index finger of both of the hands, touch both of the index fingers. Forming an inverted "V" shape with your hands.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <h6 class="text-center mb-3">Hollow Technique: Purple <br>(虚きょ式しき「茈むらさき」, Kyoshiki: Murasaki)</h6>
+                                    <div class="gesture-picture mb-3">
+                                        <img src="static/pictures/hollow_purple_snap.png" alt="">
+                                    </div>
+                                    <p>Hand Gesture: <br>Showing only 1 hand (Right / Left) to the web cam. Keep your hand open and extended forward, with all five fingers spread apart and slightly curved, like a relaxed open palm thrust outward. The palm facing upward, and the wrist is straight in line with the outstretched arm.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <h6 class="text-center mb-3">Domain Expansion: Infinite Void</h6>
+                                    <div class="gesture-picture mb-3">
+                                        <img src="static/pictures/domain_expansion.png" alt="">
+                                    </div>
+                                    <p>Hand Gesture: <br>Showing only your right hand to the web cam. Straighten your index finger to the top and have your middle finger cross over your index finger. The rest of the fingers should be clamp together forming a fist</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot">
+        <p>Model may not capture your gesture 100% correctly.</p>
+    </div>
+
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.183.2/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.2/examples/jsm/"
+        }
+        }
+    </script>
+    <script type="module" src="/static/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+</body>
+</html>
