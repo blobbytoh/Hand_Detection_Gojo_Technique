@@ -32,10 +32,6 @@ model_dual = pickle.load(open('backend/gesture_model_dual.pkl', 'rb'))
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get('/')
-def read_root():
-    return {"status": "ok"}
-
 @app.head("/")
 def head_root():
     return {}
